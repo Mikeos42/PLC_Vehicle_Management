@@ -1,8 +1,9 @@
 package org.adamus;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
-public abstract class Vehicle {
+public abstract class Vehicle implements Serializable {
     private String brand, model;
     private int year, vehicle_id;
     private double base_price;
@@ -49,4 +50,15 @@ public abstract class Vehicle {
 
     public abstract double getDiscount();
     public double getPrice() { return base_price - getDiscount(); }
+
+    @Override
+    public String toString() {
+        return "Vehicle{" +
+                "brand='" + brand + '\'' +
+                ", model='" + model + '\'' +
+                ", year=" + year +
+                ", vehicle_id=" + vehicle_id +
+                ", base_price=" + base_price +
+                '}';
+    }
 }

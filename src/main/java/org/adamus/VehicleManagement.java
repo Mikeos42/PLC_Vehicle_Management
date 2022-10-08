@@ -1,5 +1,53 @@
 package org.adamus;
 
-public class VehicleManagement {
+import java.util.Comparator;
+import java.util.List;
 
+public class VehicleManagement {
+    private SerializedVehicleDAO dao;
+
+    public VehicleManagement(SerializedVehicleDAO dao) {
+        this.dao = dao;
+    }
+
+    public void getVehicles() {
+        dao.getVehicleList().forEach(System.out::println);
+    }
+
+    public void getVehicle(int id) {
+        System.out.println(dao.getVehicle(id));
+    }
+
+    public void addVehicle(Vehicle vehicle) {
+        dao.saveVehicle(vehicle);
+    }
+
+    public void deleteVehicle(Vehicle vehicle) {
+        dao.deleteVehicle(vehicle.getVehicle_id());
+    }
+
+    public void deleteVehicle(int id) {
+        dao.deleteVehicle(id);
+    }
+
+    public void vehicleTotal() {
+        System.out.println("Total Vehicles: " + dao.getVehicleList().size());
+    }
+
+    public void vehicleCars() {
+        System.out.println("Total Cars: " + dao.getVehicleList().stream().filter(x -> x instanceof Car).count());
+    }
+
+    public void vehicleTrucks() {
+        System.out.println("Total Trucks: " + dao.getVehicleList().stream().filter(x -> x instanceof Truck).count());
+    }
+
+    public void vehicleMean() {
+        System.out.println("Mean Price: " + dao.getVehicleList().stream().mapToDouble(Vehicle::getPrice).sum() / dao.getVehicleList().size());
+    }
+
+    public void oldestVehicle() {
+        int age = dao.getVehicleList().stream().max(Comparator.comparingInt(Vehicle::getAge)).get().getAge();
+        dao.getVehicleList().stream().filter(o -> o.getAge() == age).forEach(System.out::println);
+    }
 }

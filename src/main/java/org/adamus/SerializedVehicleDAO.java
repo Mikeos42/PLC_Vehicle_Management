@@ -7,6 +7,7 @@ import java.util.List;
 public class SerializedVehicleDAO implements VehicleDAO, Serializable {
 
     private String fileName;
+    private boolean fileExists = false;
     private List<Vehicle> allVehicles;
 
 
@@ -14,49 +15,67 @@ public class SerializedVehicleDAO implements VehicleDAO, Serializable {
         this.fileName = fileName;
     }
 
-    private void serialize() {
+    private void serializeVehicle(List<Vehicle> vehicles) {
         try {
-            FileOutputStream file = new FileOutputStream(fileName);
-            ObjectOutputStream out = new ObjectOutputStream(file);
-
-            // object persists here
-
-            out.writeObject(allVehicles);
-
-            out.close();
-            file.close();
+            FileOutputStream outstream = new FileOutputStream(fileName);
+            ObjectOutputStream writer = new ObjectOutputStream(outstream);
+            writer.writeObject(vehicles);
+            writer.flush();
+            writer.close();
         } catch (IOException e) {
-            System.err.println("Error during serialization: " + e);
-        }
-    }
-
-    private void deserialize() {
-        try {
-            FileInputStream file = new FileInputStream(fileName);
-            ObjectInputStream in = new ObjectInputStream(file);
-
-            // object persists here
-
-            allVehicles = (List<Vehicle>) in.readObject();
-
-            in.close();
-            file.close();
-        } catch (IOException e) {
-            System.err.println("Error during serialization: " + e);
-        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+//        File file = new File(fileName);
+//        if(file.exists()) file.delete();
+//
+//        try {
+//            ObjectOutputStream writer = new ObjectOutputStream(new FileOutputStream(fileName, true));
+//            writer.writeObject(vehicles);
+//            writer.close();
+//        } catch (IOException e) {
+//            System.err.println("Error during serialization: " + e.getMessage());
+//            System.exit(1);
+//        }
+//        fileExists = true;
+    }
+
+    @SuppressWarnings("unchecked")
+    private List<Vehicle> deserializeVehicles() {
+        if(!new File(fileName).exists()) return null;
+        List<Vehicle> vehicles = null;
+        try {
+            FileInputStream instream = new FileInputStream(fileName);
+            ObjectInputStream reader = new ObjectInputStream(instream);
+
+            vehicles = (List<Vehicle>) reader.readObject();
+            reader.close();
+        } catch (ClassNotFoundException | IOException e) {
+            throw new RuntimeException(e);
+        }
+        return vehicles;
+//        if(!fileExists) return null;
+//        File file = new File(fileName);
+//
+//        List<Vehicle> vehicles = null;
+//        try {
+//            ObjectInputStream reader = new ObjectInputStream(new FileInputStream(fileName));
+//            vehicles = (List<Vehicle>) reader.readObject();
+//            reader.close();
+//        } catch (IOException | ClassNotFoundException e) {
+//            System.err.println("Error during deserialization: " + e.getMessage());
+//            System.exit(1);
+//        }
+//        return vehicles;
     }
 
     @Override
     public List<Vehicle> getVehicleList() {
-        deserialize();
-        return allVehicles;
+        return deserializeVehicles();
     }
 
     @Override
     public Vehicle getVehicle(int id) {
-        deserialize();
+        allVehicles = deserializeVehicles();
         for (Vehicle vehicle : allVehicles) {
             if(vehicle.getVehicle_id() == id) {
                 return vehicle;
@@ -67,23 +86,23 @@ public class SerializedVehicleDAO implements VehicleDAO, Serializable {
 
     @Override
     public void saveVehicle(Vehicle vehicle) {
-        deserialize();
+        allVehicles = deserializeVehicles();
         if(allVehicles == null) {
             allVehicles = new ArrayList<>();
         }
         allVehicles.add(vehicle);
-        serialize();
+        serializeVehicle(allVehicles);
     }
 
     @Override
     public void deleteVehicle(int id) {
-        deserialize();
+        allVehicles = deserializeVehicles();
         for (Vehicle vehicle : allVehicles) {
             if(vehicle.getVehicle_id() == id) {
                 allVehicles.remove(vehicle);
                 break;
             }
         }
-        serialize();
+        serializeVehicle(allVehicles);
     }
 }

@@ -1,10 +1,12 @@
 package org.adamus;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 public class Car extends Vehicle {
 
     private int inspection_year;
+    private static final long serialVersionUID = 1L;
 
     public Car(String brand, String model, int year, int vehicle_id, double base_price) {
         super(brand, model, year, vehicle_id, base_price);
@@ -27,5 +29,12 @@ public class Car extends Vehicle {
         } else {
             return getBase_price() * discount;
         }
+    }
+
+    @Override
+    public String toString() {
+        return super.toString() + "Car{" +
+                "inspection_year=" + inspection_year +
+                '}';
     }
 }
