@@ -4,8 +4,10 @@ import java.util.Calendar;
 
 public class Truck extends Vehicle {
 
-    public Truck(String brand, String model, int year, int vehicle_id, double base_price) {
-        super(brand, model, year, vehicle_id, base_price);
+    private static final long serialVersionUID = 2L;
+
+    public Truck(int id, String brand, String model, int year, double base_price) {
+        super(id, brand, model, year, base_price);
     }
 
     @Override

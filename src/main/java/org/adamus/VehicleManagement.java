@@ -4,7 +4,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class VehicleManagement {
-    private SerializedVehicleDAO dao;
+    private final SerializedVehicleDAO dao;
 
     public VehicleManagement(SerializedVehicleDAO dao) {
         this.dao = dao;
@@ -30,19 +30,19 @@ public class VehicleManagement {
         dao.deleteVehicle(id);
     }
 
-    public void vehicleTotal() {
+    public void countVehicles() {
         System.out.println("Total Vehicles: " + dao.getVehicleList().size());
     }
 
-    public void vehicleCars() {
+    public void countCars() {
         System.out.println("Total Cars: " + dao.getVehicleList().stream().filter(x -> x instanceof Car).count());
     }
 
-    public void vehicleTrucks() {
+    public void countTrucks() {
         System.out.println("Total Trucks: " + dao.getVehicleList().stream().filter(x -> x instanceof Truck).count());
     }
 
-    public void vehicleMean() {
+    public void meanPrice() {
         System.out.println("Mean Price: " + dao.getVehicleList().stream().mapToDouble(Vehicle::getPrice).sum() / dao.getVehicleList().size());
     }
 

@@ -2,14 +2,19 @@ package org.adamus;
 
 import java.io.Serializable;
 import java.util.Calendar;
+import java.util.Objects;
+
+import static java.lang.Math.abs;
 
 public abstract class Vehicle implements Serializable {
-    private String brand, model;
-    private int year, vehicle_id;
-    private double base_price;
+    private final String brand;
+    private final String model;
+    private final int year;
+    private final int vehicle_id;
+    private final double base_price;
 
 
-    public Vehicle(String brand, String model, int year, int vehicle_id, double base_price) {
+    public Vehicle(int id, String brand, String model, int year, double base_price) {
         if(brand == null || model == null || brand.isEmpty() || model.isEmpty()) {
             throw new IllegalArgumentException("Error: Invalid parameter.");
         }
@@ -22,7 +27,7 @@ public abstract class Vehicle implements Serializable {
         this.brand = brand;
         this.model = model;
         this.year = year;
-        this.vehicle_id = vehicle_id;
+        this.vehicle_id = id;
         this.base_price = base_price;
     }
 
@@ -60,5 +65,10 @@ public abstract class Vehicle implements Serializable {
                 ", vehicle_id=" + vehicle_id +
                 ", base_price=" + base_price +
                 '}';
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(brand, model, year, base_price);
     }
 }

@@ -8,8 +8,13 @@ public class Car extends Vehicle {
     private int inspection_year;
     private static final long serialVersionUID = 1L;
 
-    public Car(String brand, String model, int year, int vehicle_id, double base_price) {
-        super(brand, model, year, vehicle_id, base_price);
+    public void setInspection_year(int inspection_year) {
+        this.inspection_year = inspection_year;
+    }
+
+    public Car(int id, String brand, String model, int year, double base_price, int inspection_year) {
+        super(id, brand, model, year, base_price);
+        this.inspection_year = inspection_year;
     }
 
     @Override
@@ -20,9 +25,9 @@ public class Car extends Vehicle {
                 - (getBase_price() * (Calendar.getInstance().get(Calendar.YEAR) - inspection_year) * 0.02);
 */
 
-        double ageDiscount = getAge() * 0.05;
-        double inspectionDiscount = (Calendar.getInstance().get(Calendar.YEAR) - inspection_year) * 0.02;
-        double discount = 1 - ageDiscount - inspectionDiscount; // ex. 0.9
+        double ageDiscount = getAge() * 5;
+        double inspectionDiscount = (Calendar.getInstance().get(Calendar.YEAR) - inspection_year) * 2;
+        double discount = (100 - ageDiscount - inspectionDiscount) / 100; // ex. 0.9
 
         if(discount < 0.85) {
             return getBase_price() * 0.85;

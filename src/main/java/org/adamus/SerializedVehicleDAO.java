@@ -6,8 +6,7 @@ import java.util.List;
 
 public class SerializedVehicleDAO implements VehicleDAO, Serializable {
 
-    private String fileName;
-    private boolean fileExists = false;
+    private final String fileName;
     private List<Vehicle> allVehicles;
 
 
@@ -81,7 +80,7 @@ public class SerializedVehicleDAO implements VehicleDAO, Serializable {
                 return vehicle;
             }
         }
-        return null;
+        throw new RuntimeException("Error: Vehicle not found. (id="+id+")");
     }
 
     @Override
@@ -89,6 +88,11 @@ public class SerializedVehicleDAO implements VehicleDAO, Serializable {
         allVehicles = deserializeVehicles();
         if(allVehicles == null) {
             allVehicles = new ArrayList<>();
+        }
+        for (Vehicle v : allVehicles) {
+            if(v.getVehicle_id() == vehicle.getVehicle_id()) {
+                throw new RuntimeException("Error: Vehicle already exists. (id="+vehicle.getVehicle_id()+")");
+            }
         }
         allVehicles.add(vehicle);
         serializeVehicle(allVehicles);
@@ -100,9 +104,11 @@ public class SerializedVehicleDAO implements VehicleDAO, Serializable {
         for (Vehicle vehicle : allVehicles) {
             if(vehicle.getVehicle_id() == id) {
                 allVehicles.remove(vehicle);
-                break;
+                serializeVehicle(allVehicles);
+                return;
             }
         }
         serializeVehicle(allVehicles);
+        throw new RuntimeException("Error: Vehicle already exists. (id="+id+")");
     }
 }
