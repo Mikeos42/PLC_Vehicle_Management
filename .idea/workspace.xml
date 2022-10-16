@@ -6,14 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9ac7607b-de71-4f84-b97e-100013470dd1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/adamus/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/adamus/Car.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/adamus/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/adamus/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/adamus/SerializedVehicleDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/adamus/SerializedVehicleDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/adamus/Truck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/adamus/Truck.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/adamus/Vehicle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/adamus/Vehicle.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/adamus/VehicleCLI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/adamus/VehicleCLI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/adamus/VehicleDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/adamus/VehicleDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/adamus/VehicleManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/adamus/VehicleManagement.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,24 +25,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/Users/miki/Documents/ProgrammingMac/PLC_Vehicle_Management/src/main/java/org/adamus",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "run.code.analysis.last.selected.profile": "pProject Default"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/miki/Documents/ProgrammingMac/PLC_Vehicle_Management/src/main/java/org/adamus&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/java/org/adamus" />
@@ -103,6 +96,8 @@
       <workItem from="1665218306855" duration="2341000" />
       <workItem from="1665248240719" duration="2691000" />
       <workItem from="1665850834966" duration="4346000" />
+      <workItem from="1665937449103" duration="997000" />
+      <workItem from="1665939519761" duration="670000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1664989310813</created>

@@ -33,9 +33,9 @@ public class VehicleCLI {
 		SerializedVehicleDAO dao = new SerializedVehicleDAO(file);
 		VehicleManagement mgt = new VehicleManagement(dao);
 
-		if(command.equalsIgnoreCase("show")) {
+		if(command.equalsIgnoreCase("show")) { // show command
 			mgt.getVehicles();
-		} else if (command.equalsIgnoreCase("add")) {
+		} else if (command.equalsIgnoreCase("add")) { // add command
 			if(input.size() != 7) {
 				System.err.println("Not right amount of parameters for creating vehicle");
 				return;
@@ -58,8 +58,24 @@ public class VehicleCLI {
 						Double.parseDouble(input.get(5)) // base price
 				));
 			} else {
-				System.err.println("Vehicle not valid");
+				System.err.println("Please enter \"car\" or \"truck\"");
 			}
+		} else if (command.equalsIgnoreCase("del")) { // delete command
+			mgt.deleteVehicle(Integer.parseInt(input.get(0)));
+		} else if (command.equalsIgnoreCase("meanprice")) {// meanprice command
+			mgt.meanPrice();
+		} else if (command.equalsIgnoreCase("count")) {// count command
+			if (input.isEmpty()) {
+				mgt.countVehicles();
+			} else if (input.get(0).equalsIgnoreCase("car")) {
+				mgt.countCars();
+			} else if (input.get(0).equalsIgnoreCase("truck")) {
+				mgt.countTrucks();
+			} else {
+				System.err.println("what do you want to count?");
+			}
+		} else if (command.equalsIgnoreCase("oldest")) {// oldest command
+			mgt.oldestVehicle();
 		}
 	}
 	
