@@ -1,5 +1,6 @@
 package org.adamus;
 
+import java.text.DecimalFormat;
 import java.util.Calendar;
 
 public class Truck extends Vehicle {
@@ -19,5 +20,17 @@ public class Truck extends Vehicle {
         } else {
             return getBase_price() * discount;
         }
+    }
+
+    @Override
+    public String toString() {
+        DecimalFormat df = Vehicle.getDecimalFormat();
+        return "Type:       Truck\n" +
+                "Id:         " + getVehicle_id() + "\n" +
+                "Brand:      " + getBrand() + "\n" +
+                "Model:      " + getModel() + "\n" +
+                "Year:       " + getYear() + "\n" +
+                "Base price: " + df.format(getBase_price()) + "\n" +
+                "Price:      " + df.format(getPrice()) + "\n";
     }
 }

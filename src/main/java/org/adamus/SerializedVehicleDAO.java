@@ -101,6 +101,9 @@ public class SerializedVehicleDAO implements VehicleDAO, Serializable {
     @Override
     public void deleteVehicle(int id) {
         allVehicles = deserializeVehicles();
+        if(allVehicles == null) {
+            throw new RuntimeException("Error: Vehicle not found. (id="+id+")");
+        }
         for (Vehicle vehicle : allVehicles) {
             if(vehicle.getVehicle_id() == id) {
                 allVehicles.remove(vehicle);
@@ -109,6 +112,6 @@ public class SerializedVehicleDAO implements VehicleDAO, Serializable {
             }
         }
         serializeVehicle(allVehicles);
-        throw new RuntimeException("Error: Vehicle already exists. (id="+id+")");
+        throw new RuntimeException("Error: Vehicle not found. (id="+id+")");
     }
 }

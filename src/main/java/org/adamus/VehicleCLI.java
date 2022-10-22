@@ -9,11 +9,13 @@ import java.util.List;
 public class VehicleCLI {
 
 	public static void main(String[] args) {
+		try {
+
+
 		List<String> input = new ArrayList<>(Arrays.stream(args).toList());
 
 		if(input.size() < 2) {
-			System.err.println("Usage: java VehicleCLI <file> <command>");
-			return;
+			throw new RuntimeException("Usage: java VehicleCLI <file> <command>");
 		}
 
 
@@ -34,13 +36,20 @@ public class VehicleCLI {
 		VehicleManagement mgt = new VehicleManagement(dao);
 
 		if(command.equalsIgnoreCase("show")) { // show command
-			mgt.getVehicles();
-		} else if (command.equalsIgnoreCase("add")) { // add command
-			if(input.size() != 7) {
-				System.err.println("Not right amount of parameters for creating vehicle");
-				return;
+			if(input.size() != 0) {
+				mgt.getVehicle(Integer.parseInt(input.get(0)));
+			} else {
+				mgt.getVehicles();
 			}
-			if(input.get(0).equalsIgnoreCase("car")) {
+		} else if (command.equalsIgnoreCase("add")) { // add command
+			if(input.size() == 7 && input.get(0).equalsIgnoreCase("car")) {
+				if(!(Vehicle.isNumeric(input.get(1)) &&
+						Vehicle.isNumeric(input.get(4)) &&
+						Vehicle.isNumeric(input.get(5)) &&
+						Vehicle.isNumeric(input.get(6)))
+				) {
+					throw new RuntimeException("Error: Invalid parameter.");
+				}
 				mgt.addVehicle(new Car(
 						Integer.parseInt(input.get(1)), // id
 						input.get(2), // brand
@@ -49,7 +58,13 @@ public class VehicleCLI {
 						Double.parseDouble(input.get(5)), // base price
 						Integer.parseInt(input.get(6)) // inspection year
 				));
-			} else if (input.get(0).equalsIgnoreCase("truck")) {
+			} else if (input.size() == 6 || input.get(0).equalsIgnoreCase("truck")) {
+				if(!(Vehicle.isNumeric(input.get(1)) &&
+						Vehicle.isNumeric(input.get(4)) &&
+						Vehicle.isNumeric(input.get(5)))
+				) {
+					throw new RuntimeException("Error: Invalid parameter.");
+				}
 				mgt.addVehicle(new Truck(
 						Integer.parseInt(input.get(1)), // id
 						input.get(2), // brand
@@ -58,7 +73,7 @@ public class VehicleCLI {
 						Double.parseDouble(input.get(5)) // base price
 				));
 			} else {
-				System.err.println("Please enter \"car\" or \"truck\"");
+				throw new RuntimeException("Error: Invalid parameter.");
 			}
 		} else if (command.equalsIgnoreCase("del")) { // delete command
 			mgt.deleteVehicle(Integer.parseInt(input.get(0)));
@@ -76,6 +91,9 @@ public class VehicleCLI {
 			}
 		} else if (command.equalsIgnoreCase("oldest")) {// oldest command
 			mgt.oldestVehicle();
+		}
+	} catch (Exception e) {
+			System.err.println(e.getMessage());
 		}
 	}
 	

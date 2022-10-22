@@ -31,23 +31,23 @@ public class VehicleManagement {
     }
 
     public void countVehicles() {
-        System.out.println("Total Vehicles: " + dao.getVehicleList().size());
+        System.out.println(dao.getVehicleList().size());
     }
 
     public void countCars() {
-        System.out.println("Total Cars: " + dao.getVehicleList().stream().filter(x -> x instanceof Car).count());
+        System.out.println(dao.getVehicleList().stream().filter(x -> x instanceof Car).count());
     }
 
     public void countTrucks() {
-        System.out.println("Total Trucks: " + dao.getVehicleList().stream().filter(x -> x instanceof Truck).count());
+        System.out.println(dao.getVehicleList().stream().filter(x -> x instanceof Truck).count());
     }
 
     public void meanPrice() {
-        System.out.println("Mean Price: " + dao.getVehicleList().stream().mapToDouble(Vehicle::getPrice).sum() / dao.getVehicleList().size());
+        System.out.println(Vehicle.getDecimalFormat().format(dao.getVehicleList().stream().mapToDouble(Vehicle::getPrice).sum() / dao.getVehicleList().size()));
     }
 
     public void oldestVehicle() {
         int age = dao.getVehicleList().stream().max(Comparator.comparingInt(Vehicle::getAge)).get().getAge();
-        dao.getVehicleList().stream().filter(o -> o.getAge() == age).forEach(System.out::println);
+        dao.getVehicleList().stream().filter(o -> o.getAge() == age).forEach(x -> System.out.println("Id: " + x.getVehicle_id()));
     }
 }

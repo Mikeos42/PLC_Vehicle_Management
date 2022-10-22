@@ -1,6 +1,7 @@
 package org.adamus;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.Calendar;
 
 public class Car extends Vehicle {
@@ -14,6 +15,9 @@ public class Car extends Vehicle {
 
     public Car(int id, String brand, String model, int year, double base_price, int inspection_year) {
         super(id, brand, model, year, base_price);
+        if(inspection_year > 2022) {
+            throw new RuntimeException("Error: Inspection year invalid.");
+        }
         this.inspection_year = inspection_year;
     }
 
@@ -38,8 +42,14 @@ public class Car extends Vehicle {
 
     @Override
     public String toString() {
-        return super.toString() + "Car{" +
-                "inspection_year=" + inspection_year +
-                '}';
+        DecimalFormat df = Vehicle.getDecimalFormat();
+        return "Type:       Car\n" +
+                "Id:         " + getVehicle_id() + "\n" +
+                "Brand:      " + getBrand() + "\n" +
+                "Model:      " + getModel() + "\n" +
+                "Year:       " + getYear() + "\n" +
+                "Inspection: " + inspection_year + "\n" +
+                "Base price: " + df.format(getBase_price()) + "\n" +
+                "Price:      " + df.format(getPrice()) + "\n";
     }
 }

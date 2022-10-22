@@ -1,6 +1,7 @@
 package org.adamus;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Objects;
 
@@ -31,6 +32,20 @@ public abstract class Vehicle implements Serializable {
         this.base_price = base_price;
     }
 
+    public static DecimalFormat getDecimalFormat() {
+        return new DecimalFormat("0.00");
+    }
+
+    public static boolean isNumeric(String str) {
+        try {
+            Double.parseDouble(str);
+            return true;
+        } catch(NumberFormatException e){
+            return false;
+        }
+    }
+
+
     public String getBrand() {
         return brand;
     }
@@ -54,7 +69,7 @@ public abstract class Vehicle implements Serializable {
     public int getAge() { return Calendar.getInstance().get(Calendar.YEAR) - year; }
 
     public abstract double getDiscount();
-    public double getPrice() { return base_price - getDiscount(); }
+    public double getPrice() { return getDiscount(); }
 
     @Override
     public String toString() {
