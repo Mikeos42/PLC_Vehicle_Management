@@ -1,7 +1,11 @@
+/**
+ * @author Mikolaj Jan Adamus
+ * @id 12030638
+ */
 package org.adamus;
 
-import java.io.Serializable;
 import java.text.DecimalFormat;
+import java.io.Serializable;
 import java.util.Calendar;
 
 public class Car extends Vehicle {

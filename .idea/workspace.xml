@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ac7607b-de71-4f84-b97e-100013470dd1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/adamus/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/adamus/Car.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/adamus/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/adamus/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/adamus/SerializedVehicleDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/adamus/SerializedVehicleDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/adamus/Truck.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/adamus/Truck.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/adamus/Vehicle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/adamus/Vehicle.java" afterDir="false" />
@@ -101,6 +103,8 @@
       <workItem from="1665218306855" duration="2341000" />
       <workItem from="1665248240719" duration="2691000" />
       <workItem from="1665850834966" duration="4346000" />
+      <workItem from="1666423752505" duration="61000" />
+      <workItem from="1666623005641" duration="1731000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1664989310813</created>

@@ -1,3 +1,7 @@
+/**
+ * @author Mikolaj Jan Adamus
+ * @id 12030638
+ */
 package org.adamus;
 
 import java.io.*;
@@ -24,18 +28,6 @@ public class SerializedVehicleDAO implements VehicleDAO, Serializable {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-//        File file = new File(fileName);
-//        if(file.exists()) file.delete();
-//
-//        try {
-//            ObjectOutputStream writer = new ObjectOutputStream(new FileOutputStream(fileName, true));
-//            writer.writeObject(vehicles);
-//            writer.close();
-//        } catch (IOException e) {
-//            System.err.println("Error during serialization: " + e.getMessage());
-//            System.exit(1);
-//        }
-//        fileExists = true;
     }
 
     @SuppressWarnings("unchecked")
@@ -52,19 +44,6 @@ public class SerializedVehicleDAO implements VehicleDAO, Serializable {
             throw new RuntimeException(e);
         }
         return vehicles;
-//        if(!fileExists) return null;
-//        File file = new File(fileName);
-//
-//        List<Vehicle> vehicles = null;
-//        try {
-//            ObjectInputStream reader = new ObjectInputStream(new FileInputStream(fileName));
-//            vehicles = (List<Vehicle>) reader.readObject();
-//            reader.close();
-//        } catch (IOException | ClassNotFoundException e) {
-//            System.err.println("Error during deserialization: " + e.getMessage());
-//            System.exit(1);
-//        }
-//        return vehicles;
     }
 
     @Override
@@ -75,6 +54,9 @@ public class SerializedVehicleDAO implements VehicleDAO, Serializable {
     @Override
     public Vehicle getVehicle(int id) {
         allVehicles = deserializeVehicles();
+        if(allVehicles == null) {
+            throw new RuntimeException("Error: Vehicle not found. (id="+id+")");
+        }
         for (Vehicle vehicle : allVehicles) {
             if(vehicle.getVehicle_id() == id) {
                 return vehicle;

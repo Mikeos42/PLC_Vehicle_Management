@@ -1,7 +1,10 @@
+/**
+ * @author Mikolaj Jan Adamus
+ * @id 12030638
+ */
 package org.adamus;
 
 import java.text.DecimalFormat;
-import java.util.Calendar;
 
 public class Truck extends Vehicle {
 
